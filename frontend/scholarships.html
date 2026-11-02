@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scholarship Finder - UniGuide AI</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top navbar-custom">
+        <div class="container">
+            <a class="navbar-brand navbar-brand-custom" href="index.html">
+                <i data-lucide="graduation-cap"></i> UniGuide <span>AI</span>
+            </a>
+            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i data-lucide="menu"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto ms-lg-4">
+                    <li class="nav-item"><a class="nav-link nav-link-custom" href="index.html"><i data-lucide="home"></i> Home</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-custom" href="colleges.html"><i data-lucide="building-2"></i> Colleges</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-custom" href="prediction.html"><i data-lucide="target"></i> Predictor</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-custom" href="recommendations.html"><i data-lucide="sparkles"></i> AI Recs</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-custom active" href="scholarships.html"><i data-lucide="award"></i> Scholarships</a></li>
+                </ul>
+                <div class="d-flex align-items-center gap-2 mt-3 mt-lg-0">
+                    <button class="dark-mode-toggle me-2" title="Toggle Dark Mode">
+                        <i data-lucide="moon"></i>
+                    </button>
+                    <div id="navAuthSection" class="d-flex align-items-center gap-2">
+                        <a href="login.html" class="btn btn-outline-primary btn-sm rounded-pill px-3">Login</a>
+                        <a href="register.html" class="btn btn-primary btn-sm rounded-pill px-3">Get Started</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container section-padding">
+        
+        <div class="text-center max-w-700 mx-auto mb-5 fade-in">
+            <span class="badge bg-warning-subtle text-warning px-3 py-2 rounded-pill fw-bold mb-2">FINANCIAL AID & GRANTS</span>
+            <h2 class="display-6 fw-extrabold text-primary">Scholarship Discovery</h2>
+            <p class="text-muted">Find merit grants, government fellowships, and financial aid matching your academic profile.</p>
+        </div>
+
+        <!-- Search & Filter Controls -->
+        <div class="card-custom p-4 mb-5 fade-in">
+            <div class="row g-3">
+                <div class="col-lg-5">
+                    <div class="input-group">
+                        <span class="input-group-text bg-white border-end-0"><i data-lucide="search" class="text-muted"></i></span>
+                        <input type="text" class="form-control border-start-0" id="scholarshipSearchInput" placeholder="Search by scholarship name or provider...">
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3">
+                    <select class="form-select" id="scholarshipCategoryFilter">
+                        <option value="">All Categories</option>
+                        <option value="Merit">Merit-cum-Means</option>
+                        <option value="Technical">Technical & Higher Ed</option>
+                        <option value="State Grant">State Grants</option>
+                    </select>
+                </div>
+                <div class="col-md-4 col-lg-2">
+                    <select class="form-select" id="scholarshipStatusFilter">
+                        <option value="ACTIVE">Active Opportunities</option>
+                        <option value="ALL">All (Including Expired)</option>
+                    </select>
+                </div>
+                <div class="col-md-4 col-lg-2">
+                    <button class="btn btn-outline-secondary w-100" id="clearScholarshipFiltersBtn">Clear Filters</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scholarship Cards Grid -->
+        <div id="scholarshipGridContainer" class="row g-4 fade-in">
+            <div class="text-center py-5">
+                <div class="spinner-border text-primary" role="status"></div>
+                <p class="text-muted mt-2">Fetching matching scholarships...</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/scholarships.js"></script>
+</body>
+</html>

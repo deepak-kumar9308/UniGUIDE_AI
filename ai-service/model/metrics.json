@@ -1,0 +1,26 @@
+{
+  "datasetSize": 250,
+  "trainingRecords": 200,
+  "testingRecords": 50,
+  "accuracy": 0.92,
+  "precision": 0.2,
+  "recall": 1.0,
+  "f1Score": 0.3333,
+  "confusionMatrix": [
+    [
+      0,
+      5,
+      16
+    ],
+    [
+      0,
+      0,
+      20
+    ],
+    [
+      0,
+      0,
+      9
+    ]
+  ]
+}

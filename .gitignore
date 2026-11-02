@@ -1,0 +1,69 @@
+# ============================
+# Build & Dependency Artifacts
+# ============================
+target/
+node_modules/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.class
+*.jar
+*.war
+
+# ============================
+# Environment & Secrets
+# ============================
+.env
+.env.local
+.env.production
+.env.*.local
+
+# ============================
+# Logs
+# ============================
+*.log
+logs/
+spring.log
+
+# ============================
+# IDE & Editor Files
+# ============================
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+*.iml
+.project
+.classpath
+.settings/
+nbproject/
+
+# ============================
+# OS Generated Files
+# ============================
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ============================
+# ML Trained Binaries
+# ============================
+ai-service/model/*.pkl
+ai-service/model/*.joblib
+ai-service/model/*.h5
+
+# ============================
+# Maven Wrapper (if present)
+# ============================
+.mvn/
+mvnw
+mvnw.cmd
+
+# ============================
+# Python Virtual Environment
+# ============================
+venv/
+.venv/
+env/

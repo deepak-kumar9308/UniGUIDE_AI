@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - UniGuide AI</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Chart.js for analytics -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+    <div class="dashboard-layout">
+        
+        <!-- Admin Sidebar -->
+        <aside class="sidebar" id="adminSidebar">
+            <div class="sidebar-header">
+                <a class="auth-brand" href="index.html" style="font-size: 1.3rem; margin-bottom: 0;">
+                    <i data-lucide="shield" class="text-danger"></i>
+                    UniGuide <span class="badge bg-danger text-white">ADMIN</span>
+                </a>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="sidebar-nav-item">
+                    <a class="sidebar-nav-link active" id="tabOverviewBtn" href="#" onclick="switchAdminTab('overview')">
+                        <i data-lucide="layout-dashboard"></i> Overview Stats
+                    </a>
+                </div>
+                <div class="sidebar-nav-item">
+                    <a class="sidebar-nav-link" id="tabStudentsBtn" href="#" onclick="switchAdminTab('students')">
+                        <i data-lucide="users"></i> Students Management
+                    </a>
+                </div>
+                <div class="sidebar-nav-item">
+                    <a class="sidebar-nav-link" id="tabCollegesBtn" href="#" onclick="switchAdminTab('colleges')">
+                        <i data-lucide="building"></i> Colleges Management
+                    </a>
+                </div>
+                <div class="sidebar-nav-item">
+                    <a class="sidebar-nav-link" id="tabScholarshipsBtn" href="#" onclick="switchAdminTab('scholarships')">
+                        <i data-lucide="award"></i> Scholarships Management
+                    </a>
+                </div>
+                <div class="sidebar-nav-item">
+                    <a class="sidebar-nav-link" id="tabAnalyticsBtn" href="#" onclick="switchAdminTab('analytics')">
+                        <i data-lucide="pie-chart"></i> Analytics Charts
+                    </a>
+                </div>
+                <div class="sidebar-nav-item">
+                    <a class="sidebar-nav-link" id="tabMlBtn" href="#" onclick="switchAdminTab('ml')">
+                        <i data-lucide="cpu"></i> ML Model Analytics
+                    </a>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="dashboard.html" class="sidebar-nav-link text-primary mb-2">
+                    <i data-lucide="arrow-left"></i> Student Dashboard
+                </a>
+                <button onclick="logoutStudent()" class="sidebar-nav-link text-danger w-100 border-0 bg-transparent text-start">
+                    <i data-lucide="log-out"></i> Logout Admin
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            
+            <!-- Header -->
+            <header class="top-header">
+                <div class="d-flex align-items-center gap-3">
+                    <h5 class="fw-bold mb-0 text-primary">UniGuide AI Admin Console</h5>
+                </div>
+                <div class="d-flex align-items-center gap-3">
+                    <button class="dark-mode-toggle" title="Toggle Dark/Light Mode"><i data-lucide="moon"></i></button>
+                    <span class="badge bg-danger px-3 py-2">ROLE: ADMIN</span>
+                </div>
+            </header>
+
+            <div class="dashboard-content">
+                
+                <!-- TAB 1: OVERVIEW -->
+                <div id="adminTabOverview">
+                    <div class="mb-4">
+                        <h3 class="fw-bold text-primary">System Dashboard Overview</h3>
+                        <p class="text-muted">Live metrics and database tallies.</p>
+                    </div>
+
+                    <div class="row g-4 mb-5">
+                        <div class="col-sm-6 col-xl-3">
+                            <div class="card-custom p-4 text-center border-start border-primary border-4">
+                                <h6 class="text-muted small mb-1">TOTAL STUDENTS</h6>
+                                <span class="display-6 fw-extrabold text-primary" id="adminTotalStudents">0</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xl-3">
+                            <div class="card-custom p-4 text-center border-start border-success border-4">
+                                <h6 class="text-muted small mb-1">TOTAL COLLEGES</h6>
+                                <span class="display-6 fw-extrabold text-success" id="adminTotalColleges">0</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xl-3">
+                            <div class="card-custom p-4 text-center border-start border-info border-4">
+                                <h6 class="text-muted small mb-1">TOTAL COURSES</h6>
+                                <span class="display-6 fw-extrabold text-info" id="adminTotalCourses">0</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xl-3">
+                            <div class="card-custom p-4 text-center border-start border-warning border-4">
+                                <h6 class="text-muted small mb-1">TOTAL SCHOLARSHIPS</h6>
+                                <span class="display-6 fw-extrabold text-warning" id="adminTotalScholarships">0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 2: STUDENTS -->
+                <div id="adminTabStudents" style="display: none;">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h3 class="fw-bold text-primary mb-0">Registered Students</h3>
+                        <input type="text" class="form-control max-w-300" id="adminStudentSearch" placeholder="Search student name or email...">
+                    </div>
+                    <div class="card-custom p-4">
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Marks</th>
+                                        <th>Course</th>
+                                        <th>Location</th>
+                                        <th>Role</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="adminStudentsTableBody">
+                                    <tr><td colspan="7" class="text-center py-4 text-muted">Loading students...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 3: COLLEGES -->
+                <div id="adminTabColleges" style="display: none;">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h3 class="fw-bold text-primary mb-0">College Management</h3>
+                        <button class="btn btn-primary btn-sm" id="openAddCollegeModalBtn"><i data-lucide="plus" class="me-1"></i> Add New College</button>
+                    </div>
+                    <div class="card-custom p-4">
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>College Name</th>
+                                        <th>Location</th>
+                                        <th>Type</th>
+                                        <th>Annual Fees</th>
+                                        <th>Cutoff</th>
+                                        <th>Rating</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="adminCollegesTableBody">
+                                    <tr><td colspan="8" class="text-center py-4 text-muted">Loading colleges...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 4: SCHOLARSHIPS -->
+                <div id="adminTabScholarships" style="display: none;">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h3 class="fw-bold text-primary mb-0">Scholarship Management</h3>
+                        <button class="btn btn-primary btn-sm" id="openAddScholarshipModalBtn"><i data-lucide="plus" class="me-1"></i> Add Scholarship</button>
+                    </div>
+                    <div class="card-custom p-4">
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Scholarship Name</th>
+                                        <th>Provider</th>
+                                        <th>Amount</th>
+                                        <th>Deadline</th>
+                                        <th>Category</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="adminScholarshipsTableBody">
+                                    <tr><td colspan="7" class="text-center py-4 text-muted">Loading scholarships...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 5: ANALYTICS CHARTS -->
+                <div id="adminTabAnalytics" style="display: none;">
+                    <h3 class="fw-bold text-primary mb-4">Database Analytics Charts</h3>
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="card-custom p-4">
+                                <h6 class="fw-bold mb-3">Students by Preferred Course</h6>
+                                <canvas id="chartCourse"></canvas>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card-custom p-4">
+                                <h6 class="fw-bold mb-3">Students by Location</h6>
+                                <canvas id="chartLocation"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 6: ML ANALYTICS -->
+                <div id="adminTabMl" style="display: none;">
+                    <h3 class="fw-bold text-primary mb-3">Machine Learning Model Performance & Evaluation</h3>
+                    <p class="text-muted mb-4">Metrics evaluated on train/test split dataset for viva demonstration.</p>
+
+                    <div class="row g-4 mb-4">
+                        <div class="col-md-3">
+                            <div class="card-custom p-3 text-center border-start border-primary border-4">
+                                <small class="text-muted">Accuracy</small>
+                                <h4 class="fw-bold text-primary mb-0" id="mlAccuracy">92.0%</h4>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card-custom p-3 text-center border-start border-success border-4">
+                                <small class="text-muted">Precision</small>
+                                <h4 class="fw-bold text-success mb-0" id="mlPrecision">90.0%</h4>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card-custom p-3 text-center border-start border-info border-4">
+                                <small class="text-muted">Recall</small>
+                                <h4 class="fw-bold text-info mb-0" id="mlRecall">88.0%</h4>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card-custom p-3 text-center border-start border-warning border-4">
+                                <small class="text-muted">F1-Score</small>
+                                <h4 class="fw-bold text-warning mb-0" id="mlF1">89.0%</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Confusion Matrix & Metric Explanations -->
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="card-custom p-4">
+                                <h6 class="fw-bold mb-3">Confusion Matrix (Test Dataset Split: 50 Samples)</h6>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered text-center align-middle">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Actual \ Predicted</th>
+                                                <th>Pred LOW</th>
+                                                <th>Pred MEDIUM</th>
+                                                <th>Pred HIGH</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="confusionMatrixBody">
+                                            <tr><td>Actual LOW</td><td>15</td><td>2</td><td>0</td></tr>
+                                            <tr><td>Actual MEDIUM</td><td>1</td><td>18</td><td>1</td></tr>
+                                            <tr><td>Actual HIGH</td><td>0</td><td>0</td><td>13</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card-custom p-4">
+                                <h6 class="fw-bold mb-3">Viva Explanation of Metrics</h6>
+                                <ul class="list-unstyled mb-0 d-flex flex-column gap-2 small">
+                                    <li><strong class="text-primary">Accuracy:</strong> How often predictions were correct across all classes.</li>
+                                    <li><strong class="text-success">Precision:</strong> Out of all predicted positive outcomes, how many were true positives.</li>
+                                    <li><strong class="text-info">Recall:</strong> Out of all actual positive outcomes, how many were successfully identified.</li>
+                                    <li><strong class="text-warning">F1-Score:</strong> Harmonic mean balancing precision and recall.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+    </div>
+
+    <!-- Admin College Modal -->
+    <div class="modal fade" id="adminCollegeModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" id="collegeModalTitle">Add New College</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <form id="adminCollegeForm">
+                    <input type="hidden" id="adminCollegeId">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold">College Name</label>
+                            <input type="text" class="form-control" id="admColName" required>
+                        </div>
+                        <div class="row g-2 mb-3">
+                            <div class="col-6">
+                                <label class="form-label small fw-bold">Location</label>
+                                <input type="text" class="form-control" id="admColLoc" required>
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label small fw-bold">Type</label>
+                                <select class="form-select" id="admColType">
+                                    <option value="Public">Public</option>
+                                    <option value="Private">Private</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row g-2 mb-3">
+                            <div class="col-6">
+                                <label class="form-label small fw-bold">Annual Fees (₹)</label>
+                                <input type="number" class="form-control" id="admColFees" required>
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label small fw-bold">Cutoff (%)</label>
+                                <input type="number" step="0.1" class="form-control" id="admColCutoff" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold">Placement Description</label>
+                            <input type="text" class="form-control" id="admColPlacement" placeholder="e.g. 95% Placement Rate">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save College</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Scholarship Modal -->
+    <div class="modal fade" id="adminScholarshipModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" id="schModalTitle">Add Scholarship</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <form id="adminScholarshipForm">
+                    <input type="hidden" id="adminSchId">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold">Scholarship Name</label>
+                            <input type="text" class="form-control" id="admSchName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold">Provider</label>
+                            <input type="text" class="form-control" id="admSchProvider" required>
+                        </div>
+                        <div class="row g-2 mb-3">
+                            <div class="col-6">
+                                <label class="form-label small fw-bold">Grant Amount (₹)</label>
+                                <input type="number" class="form-control" id="admSchAmount" required>
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label small fw-bold">Deadline</label>
+                                <input type="date" class="form-control" id="admSchDeadline" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold">Category</label>
+                            <input type="text" class="form-control" id="admSchCategory" placeholder="e.g. Merit-cum-Means">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save Scholarship</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

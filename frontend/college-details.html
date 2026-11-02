@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Details - UniGuide AI</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body class="bg-background">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top navbar-custom">
+        <div class="container">
+            <a class="navbar-brand navbar-brand-custom" href="index.html">
+                <i data-lucide="graduation-cap"></i> UniGuide <span>AI</span>
+            </a>
+            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i data-lucide="menu"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto ms-lg-4">
+                    <li class="nav-item"><a class="nav-link nav-link-custom" href="index.html"><i data-lucide="home"></i> Home</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-custom active" href="colleges.html"><i data-lucide="building-2"></i> Colleges</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-custom" href="prediction.html"><i data-lucide="target"></i> Predictor</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-custom" href="recommendations.html"><i data-lucide="sparkles"></i> AI Recs</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-custom" href="compare.html"><i data-lucide="git-compare"></i> Compare</a></li>
+                </ul>
+                <div class="d-flex align-items-center gap-2 mt-3 mt-lg-0">
+                    <button class="dark-mode-toggle me-2" title="Toggle Dark Mode">
+                        <i data-lucide="moon"></i>
+                    </button>
+                    <div id="navAuthSection" class="d-flex align-items-center gap-2">
+                        <a href="login.html" class="btn btn-outline-primary btn-sm rounded-pill px-3">Login</a>
+                        <a href="register.html" class="btn btn-primary btn-sm rounded-pill px-3">Get Started</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- College Hero -->
+    <section class="position-relative" style="height: 350px;">
+        <img id="heroCollegeImg" src="https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="College Campus" class="w-100 h-100 object-fit-cover" style="object-fit: cover;">
+        <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
+        <div class="position-absolute bottom-0 start-0 w-100 p-4 pb-5">
+            <div class="container">
+                <div class="row align-items-end">
+                    <div class="col-lg-8 fade-in">
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <span class="badge bg-primary text-white px-2 py-1" id="collegeTypeBadge">University</span>
+                            <span class="badge bg-warning text-dark px-2 py-1" id="collegeRatingBadge"><i data-lucide="star" class="d-inline" style="width:12px;height:12px;fill:#000;"></i> 4.5 Rating</span>
+                        </div>
+                        <h1 class="display-5 fw-bold text-white mb-2" id="collegeName">Loading...</h1>
+                        <p class="text-white-50 fs-5 mb-0" id="collegeLocation"><i data-lucide="map-pin" class="d-inline"></i> Location</p>
+                    </div>
+                    <div class="col-lg-4 text-lg-end mt-4 mt-lg-0 fade-in">
+                        <div class="bg-white rounded-3 p-3 d-inline-block text-start shadow-lg">
+                            <p class="text-muted small fw-bold mb-1">Your AI Match Score</p>
+                            <div class="d-flex align-items-center gap-3">
+                                <h2 class="text-success fw-bold mb-0" id="collegeMatchScore">--%</h2>
+                                <button class="btn btn-sm btn-outline-custom" onclick="document.getElementById('overview-tab').click()">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Details Content -->
+    <section class="py-5" style="margin-top: -30px; position: relative; z-index: 10;">
+        <div class="container">
+            <div class="row g-4">
+                
+                <!-- Left Content: Tabs & Info -->
+                <div class="col-lg-8 fade-in">
+                    <div class="card-custom bg-white p-0">
+                        <!-- Custom Tabs -->
+                        <ul class="nav nav-tabs border-bottom-0 p-3 pb-0" id="collegeTabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active fw-bold text-dark border-0 pb-3 bg-transparent" style="border-bottom: 3px solid var(--secondary) !important;" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview" type="button" role="tab">Overview</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link fw-bold text-muted border-0 pb-3 bg-transparent" id="courses-tab" data-bs-toggle="tab" data-bs-target="#courses" type="button" role="tab">Courses & Fees</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link fw-bold text-muted border-0 pb-3 bg-transparent" id="admission-tab" data-bs-toggle="tab" data-bs-target="#admission" type="button" role="tab">Admission</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link fw-bold text-muted border-0 pb-3 bg-transparent" id="placement-tab" data-bs-toggle="tab" data-bs-target="#placement" type="button" role="tab">Placement</button>
+                            </li>
+                        </ul>
+                        <hr class="m-0 text-muted opacity-25">
+                        
+                        <div class="tab-content p-4" id="collegeTabsContent">
+                            <!-- Overview Tab -->
+                            <div class="tab-pane fade show active" id="overview" role="tabpanel">
+                                <h5 class="fw-bold mb-3">About the Institute</h5>
+                                <p class="text-muted mb-4" id="collegeAboutText">Loading overview...</p>
+                                
+                                <h5 class="fw-bold mb-3">Highlights</h5>
+                                <div class="row g-3 mb-4">
+                                    <div class="col-sm-6">
+                                        <div class="d-flex align-items-center gap-3 p-3 border rounded-3">
+                                            <div class="bg-primary-subtle text-primary p-2 rounded"><i data-lucide="award"></i></div>
+                                            <div>
+                                                <small class="text-muted d-block fw-bold">NAAC Grade</small>
+                                                <span class="text-dark fw-bold" id="collegeNaacGrade">A+</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="d-flex align-items-center gap-3 p-3 border rounded-3">
+                                            <div class="bg-success-subtle text-success p-2 rounded"><i data-lucide="briefcase"></i></div>
+                                            <div>
+                                                <small class="text-muted d-block fw-bold">Highest Package</small>
+                                                <span class="text-dark fw-bold" id="collegeHighestPackage">₹54.75 LPA</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <h5 class="fw-bold mb-3">Campus Facilities</h5>
+                                <div class="d-flex flex-wrap gap-2" id="collegeCampusFacilities">
+                                    <span class="badge border text-muted px-3 py-2"><i data-lucide="wifi" class="me-1" style="width:14px;"></i> Wi-Fi Campus</span>
+                                    <span class="badge border text-muted px-3 py-2"><i data-lucide="book-open" class="me-1" style="width:14px;"></i> Central Library</span>
+                                    <span class="badge border text-muted px-3 py-2"><i data-lucide="home" class="me-1" style="width:14px;"></i> Hostels</span>
+                                    <span class="badge border text-muted px-3 py-2"><i data-lucide="monitor" class="me-1" style="width:14px;"></i> Advanced Labs</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Courses Tab -->
+                            <div class="tab-pane fade" id="courses" role="tabpanel">
+                                <div id="coursesListContainer">
+                                    <h5 class="fw-bold mb-4">Popular Courses</h5>
+                                    <p class="text-muted">Loading course details...</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Admission Tab -->
+                            <div class="tab-pane fade" id="admission" role="tabpanel">
+                                <h5 class="fw-bold mb-3">Admission Process 2026</h5>
+                                <ol class="text-muted mb-4">
+                                    <li class="mb-2">Register online through the official portal.</li>
+                                    <li class="mb-2">Pay the application fee.</li>
+                                    <li class="mb-2">Appear for national/state level entrance examination.</li>
+                                    <li class="mb-2">Counseling and seat allotment based on merit.</li>
+                                </ol>
+                                
+                                <h5 class="fw-bold mb-3">Important Dates</h5>
+                                <ul class="list-group list-group-flush border rounded-3 mb-0">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center p-3 text-muted">
+                                        <span>Application Starts</span>
+                                        <span class="text-dark fw-bold">Oct 15, 2025</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center p-3 text-muted">
+                                        <span>Entrance Exam Phase 1</span>
+                                        <span class="text-dark fw-bold">Jan 20, 2026</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center p-3 text-muted border-bottom-0">
+                                        <span>Result Declaration</span>
+                                        <span class="text-dark fw-bold">Feb 05, 2026</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <!-- Placement Tab -->
+                            <div class="tab-pane fade" id="placement" role="tabpanel">
+                                <h5 class="fw-bold mb-3">Placement Statistics 2025</h5>
+                                <div class="row g-4 mb-4">
+                                    <div class="col-sm-4">
+                                        <div class="text-center p-3 border rounded-3 bg-light">
+                                            <h3 class="fw-bold text-primary mb-1" id="collegePlacementRate">95%</h3>
+                                            <small class="text-muted">Placement Rate</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="text-center p-3 border rounded-3 bg-light">
+                                            <h3 class="fw-bold text-success mb-1" id="collegePlacementRecruiters">500+</h3>
+                                            <small class="text-muted">Recruiters</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="text-center p-3 border rounded-3 bg-light">
+                                            <h3 class="fw-bold text-accent mb-1" id="collegePlacementAvg">₹8.5L</h3>
+                                            <small class="text-muted">Average Package</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h6 class="fw-bold mb-3">Top Recruiters</h6>
+                                <div class="d-flex flex-wrap gap-2" id="collegeTopRecruiters">
+                                    <span class="badge border bg-white text-dark px-3 py-2 fw-medium">Microsoft</span>
+                                    <span class="badge border bg-white text-dark px-3 py-2 fw-medium">Google</span>
+                                    <span class="badge border bg-white text-dark px-3 py-2 fw-medium">Amazon</span>
+                                    <span class="badge border bg-white text-dark px-3 py-2 fw-medium">TCS</span>
+                                    <span class="badge border bg-white text-dark px-3 py-2 fw-medium">Infosys</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Content: Actions & Contact -->
+                <div class="col-lg-4 fade-in">
+                    <!-- Action Card -->
+                    <div class="card-custom p-4 bg-white mb-4">
+                        <h6 class="fw-bold mb-3">Actions</h6>
+                        <button class="btn-primary-custom w-100 py-3 mb-3 justify-content-center" id="actionCheckChance">
+                            <i data-lucide="bar-chart-2"></i> Check My Admission Chance
+                        </button>
+                        <button class="btn-outline-custom w-100 py-2 mb-3 justify-content-center border" id="actionCompare">
+                            <i data-lucide="git-compare"></i> Add to Compare
+                        </button>
+                    </div>
+                    
+                    <!-- AI Insight -->
+                    <div class="card-custom p-4 bg-gradient-primary text-white text-center mb-4 border-0">
+                        <div class="mb-3"><i data-lucide="bot" style="width: 40px; height: 40px; color: var(--accent);"></i></div>
+                        <h6 class="fw-bold text-white mb-2">AI Recommendation</h6>
+                        <p class="small text-white-50 mb-0">Based on your marks and preferences, this college is a High Probability match for your profile.</p>
+                    </div>
+                    
+                    <!-- Contact Info -->
+                    <div class="card-custom p-4 bg-white">
+                        <h6 class="fw-bold mb-3">Contact Info</h6>
+                        <div class="d-flex gap-3 mb-3 text-muted small">
+                            <i data-lucide="map-pin" class="flex-shrink-0" style="width:16px;"></i>
+                            <span id="collegeAddress">College Address</span>
+                        </div>
+                        <div class="d-flex gap-3 mb-3 text-muted small">
+                            <i data-lucide="phone" class="flex-shrink-0" style="width:16px;"></i>
+                            <span id="collegePhone">+91 1800 120 4000</span>
+                        </div>
+                        <div class="d-flex gap-3 text-muted small">
+                            <i data-lucide="globe" class="flex-shrink-0" style="width:16px;"></i>
+                            <a href="#" id="collegeWebsite" target="_blank" class="text-secondary text-decoration-none">Official Website</a>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-custom mt-5">
+        <div class="container text-center">
+            <h5 class="fw-bold text-white mb-3">UniGuide AI</h5>
+            <p class="text-white-50 small mb-0">&copy; 2026 UniGuide AI. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        if (window.lucide) lucide.createIcons();
+        
+        document.querySelectorAll('#collegeTabs .nav-link').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('#collegeTabs .nav-link').forEach(t => {
+                    t.classList.remove('text-dark', 'active');
+                    t.classList.add('text-muted');
+                    t.style.borderBottom = 'none';
+                });
+                this.classList.remove('text-muted');
+                this.classList.add('text-dark', 'active');
+                this.style.borderBottom = '3px solid var(--secondary)';
+            });
+        });
+    </script>
+    <script src="js/main.js"></script>
+    <script src="js/college-details.js"></script>
+</body>
+</html>

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniGuide AI - Your Smart Guide to the Right College</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top navbar-custom">
+        <div class="container">
+            <a class="navbar-brand navbar-brand-custom" href="index.html">
+                <i data-lucide="graduation-cap"></i> UniGuide <span>AI</span>
+            </a>
+            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i data-lucide="menu"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto ms-lg-4">
+                    <li class="nav-item"><a class="nav-link nav-link-custom active" href="index.html"><i data-lucide="home"></i> Home</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-custom" href="colleges.html"><i data-lucide="building-2"></i> Colleges</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-custom" href="prediction.html"><i data-lucide="target"></i> Predictor</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-custom" href="recommendations.html"><i data-lucide="sparkles"></i> AI Recs</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-custom" href="compare.html"><i data-lucide="git-compare"></i> Compare</a></li>
+                </ul>
+                <div class="d-flex align-items-center gap-2 mt-3 mt-lg-0">
+                    <button class="dark-mode-toggle me-2" title="Toggle Dark Mode">
+                        <i data-lucide="moon"></i>
+                    </button>
+                    <div id="navAuthSection" class="d-flex align-items-center gap-2">
+                        <a href="login.html" class="btn btn-outline-primary btn-sm rounded-pill px-3">Login</a>
+                        <a href="register.html" class="btn btn-primary btn-sm rounded-pill px-3">Get Started</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="section-padding bg-gradient-primary text-white position-relative overflow-hidden" style="min-height: 100vh; display: flex; align-items: center; padding-top: 100px;">
+        <div class="container position-relative z-3">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0 fade-in">
+                    <div class="badge bg-white text-primary rounded-pill px-3 py-2 mb-4 d-inline-flex align-items-center gap-2 fw-bold">
+                        <i data-lucide="sparkles" class="text-secondary" style="width: 16px;"></i> AI-Powered Guidance
+                    </div>
+                    <h1 class="display-3 fw-bold mb-4 hero-title text-white">Find the Right College.<br><span class="text-accent">Build the Right Future.</span></h1>
+                    <p class="lead mb-5 text-white-50 hero-subtitle">UniGuide AI uses intelligent recommendations and personalized guidance to help you discover colleges, courses, scholarships, and admission opportunities that match your goals.</p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="register.html" class="btn-accent-custom px-4 py-3 text-decoration-none fs-5">Get Personalized Guidance</a>
+                        <a href="colleges.html" class="btn-outline-custom text-white border-white px-4 py-3 text-decoration-none fs-5 hover-bg-white hover-text-primary">Explore Colleges</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 position-relative fade-in">
+                    <!-- Abstract Hero Visual -->
+                    <div class="position-relative">
+                        <div class="position-absolute top-50 start-50 translate-middle bg-accent rounded-circle blur-effect" style="width: 300px; height: 300px; filter: blur(100px); opacity: 0.5;"></div>
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Students" class="img-fluid rounded-4 shadow-xl position-relative z-2" style="border: 8px solid rgba(255,255,255,0.1);">
+                        
+                        <!-- Floating Card -->
+                        <div class="position-absolute bottom-0 start-0 translate-middle-x z-3 card-custom p-3 bg-white d-flex align-items-center gap-3" style="width: 250px; transform: translateY(30px);">
+                            <div class="bg-success-subtle p-2 rounded-circle">
+                                <i data-lucide="check-circle" class="text-success"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-0 text-dark fw-bold">92% Match Found</h6>
+                                <small class="text-muted">B.Tech CSE at Chandigarh Univ</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust / Statistics Section -->
+    <section class="py-5 bg-white border-bottom">
+        <div class="container">
+            <div class="row text-center g-4">
+                <div class="col-6 col-md-3 fade-in">
+                    <h2 class="display-5 fw-bold text-primary mb-1">500+</h2>
+                    <p class="text-muted fw-medium">Colleges</p>
+                </div>
+                <div class="col-6 col-md-3 fade-in">
+                    <h2 class="display-5 fw-bold text-primary mb-1">100+</h2>
+                    <p class="text-muted fw-medium">Courses</p>
+                </div>
+                <div class="col-6 col-md-3 fade-in">
+                    <h2 class="display-5 fw-bold text-primary mb-1">1000+</h2>
+                    <p class="text-muted fw-medium">Scholarships</p>
+                </div>
+                <div class="col-6 col-md-3 fade-in">
+                    <h2 class="display-5 fw-bold text-primary mb-1">24/7</h2>
+                    <p class="text-muted fw-medium">AI Guidance</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="section-padding">
+        <div class="container">
+            <div class="text-center mb-5 fade-in">
+                <h2 class="fw-bold mb-3">How UniGuide AI Works</h2>
+                <p class="text-muted max-w-2xl mx-auto">Your journey to the perfect college in four simple steps.</p>
+            </div>
+            <div class="row g-4 position-relative">
+                <div class="col-md-6 col-lg-3 fade-in">
+                    <div class="card-custom h-100 p-4 text-center">
+                        <h1 class="display-1 fw-bold text-muted opacity-25 mb-3">01</h1>
+                        <h5 class="fw-bold mb-3">Create Your Profile</h5>
+                        <p class="text-muted mb-0">Sign up and enter your academic details and interests.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 fade-in">
+                    <div class="card-custom h-100 p-4 text-center">
+                        <h1 class="display-1 fw-bold text-muted opacity-25 mb-3">02</h1>
+                        <h5 class="fw-bold mb-3">Tell Us Preferences</h5>
+                        <p class="text-muted mb-0">Set your budget, preferred locations, and desired courses.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 fade-in">
+                    <div class="card-custom h-100 p-4 text-center">
+                        <h1 class="display-1 fw-bold text-muted opacity-25 mb-3">03</h1>
+                        <h5 class="fw-bold mb-3">AI Recommendations</h5>
+                        <p class="text-muted mb-0">Our AI analyzes data to find the best college matches.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 fade-in">
+                    <div class="card-custom h-100 p-4 text-center">
+                        <h1 class="display-1 fw-bold text-muted opacity-25 mb-3">04</h1>
+                        <h5 class="fw-bold mb-3">Choose Confidently</h5>
+                        <p class="text-muted mb-0">Review your chances and make an informed decision.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section-padding bg-white">
+        <div class="container">
+            <div class="text-center mb-5 fade-in">
+                <h2 class="fw-bold mb-3">Powerful Features</h2>
+                <p class="text-muted max-w-2xl mx-auto">Everything you need to navigate college admissions successfully.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4 fade-in">
+                    <div class="card-custom h-100 card-custom-body">
+                        <div class="card-icon primary"><i data-lucide="bot"></i></div>
+                        <h5 class="fw-bold">AI College Recommendation</h5>
+                        <p class="text-muted mb-0">Get personalized college suggestions based on your academic profile and preferences.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 fade-in">
+                    <div class="card-custom h-100 card-custom-body">
+                        <div class="card-icon accent"><i data-lucide="bar-chart-2"></i></div>
+                        <h5 class="fw-bold">Admission Chance Prediction</h5>
+                        <p class="text-muted mb-0">See your probability of admission before you apply, saving time and money.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 fade-in">
+                    <div class="card-custom h-100 card-custom-body">
+                        <div class="card-icon violet"><i data-lucide="book-open"></i></div>
+                        <h5 class="fw-bold">Course Guidance</h5>
+                        <p class="text-muted mb-0">Discover courses that align with your career interests and future goals.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 fade-in">
+                    <div class="card-custom h-100 card-custom-body">
+                        <div class="card-icon primary"><i data-lucide="coins"></i></div>
+                        <h5 class="fw-bold">Scholarship Finder</h5>
+                        <p class="text-muted mb-0">Find financial aid and scholarships you are eligible for automatically.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 fade-in">
+                    <div class="card-custom h-100 card-custom-body">
+                        <div class="card-icon accent"><i data-lucide="file-text"></i></div>
+                        <h5 class="fw-bold">Document Guidance</h5>
+                        <p class="text-muted mb-0">Keep track of required documents and deadlines for all your applications.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 fade-in">
+                    <div class="card-custom h-100 card-custom-body">
+                        <div class="card-icon violet"><i data-lucide="message-square"></i></div>
+                        <h5 class="fw-bold">AI Admission Assistant</h5>
+                        <p class="text-muted mb-0">Chat with our AI 24/7 to get answers to your admission queries.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Recommendation Preview -->
+    <section class="section-padding bg-background border-top border-bottom">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5 mb-5 mb-lg-0 fade-in">
+                    <h2 class="fw-bold mb-4">Experience the Power of AI Recommendations</h2>
+                    <p class="text-muted mb-4">Our advanced algorithm evaluates your marks, budget, and location preferences to generate a highly accurate match score for top institutions.</p>
+                    <ul class="list-unstyled mb-5">
+                        <li class="d-flex align-items-center gap-3 mb-3">
+                            <i data-lucide="check" class="text-success"></i>
+                            <span class="text-dark fw-medium">Data-backed predictions</span>
+                        </li>
+                        <li class="d-flex align-items-center gap-3 mb-3">
+                            <i data-lucide="check" class="text-success"></i>
+                            <span class="text-dark fw-medium">Real-time matching</span>
+                        </li>
+                        <li class="d-flex align-items-center gap-3 mb-3">
+                            <i data-lucide="check" class="text-success"></i>
+                            <span class="text-dark fw-medium">Unbiased results</span>
+                        </li>
+                    </ul>
+                    <a href="register.html" class="btn-primary-custom">Try It Now</a>
+                </div>
+                <div class="col-lg-6 offset-lg-1 fade-in">
+                    <div class="card-custom p-4 bg-white shadow-xl">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h5 class="fw-bold mb-0">Based on your profile</h5>
+                            <span class="badge bg-primary-subtle text-primary rounded-pill px-3 py-2">Updated Just Now</span>
+                        </div>
+                        
+                        <!-- Mock College Card 1 -->
+                        <div class="d-flex flex-column flex-sm-row gap-3 p-3 border rounded-3 mb-3 align-items-center hover-shadow transition-fast">
+                            <img src="https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-4.0.3&w=100&h=100&fit=crop" class="rounded-3" alt="College">
+                            <div class="flex-grow-1">
+                                <h6 class="fw-bold mb-1">Chandigarh University</h6>
+                                <p class="text-muted small mb-2"><i data-lucide="map-pin" class="d-inline" style="width:14px;height:14px;"></i> Mohali, Punjab</p>
+                                <span class="badge badge-match">92% Match</span>
+                            </div>
+                            <button class="btn btn-sm btn-outline-custom">View</button>
+                        </div>
+
+                        <!-- Mock College Card 2 -->
+                        <div class="d-flex flex-column flex-sm-row gap-3 p-3 border rounded-3 align-items-center hover-shadow transition-fast">
+                            <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-4.0.3&w=100&h=100&fit=crop" class="rounded-3" alt="College">
+                            <div class="flex-grow-1">
+                                <h6 class="fw-bold mb-1">Lovely Professional Univ.</h6>
+                                <p class="text-muted small mb-2"><i data-lucide="map-pin" class="d-inline" style="width:14px;height:14px;"></i> Jalandhar, Punjab</p>
+                                <span class="badge badge-match text-primary bg-primary-subtle border-0">87% Match</span>
+                            </div>
+                            <button class="btn btn-sm btn-outline-custom">View</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose UniGuide -->
+    <section class="section-padding bg-white">
+        <div class="container">
+            <div class="text-center mb-5 fade-in">
+                <h2 class="fw-bold mb-3">Why Choose UniGuide AI</h2>
+            </div>
+            <div class="row g-4 align-items-center">
+                <div class="col-lg-6 fade-in">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Why Choose Us" class="img-fluid rounded-4 shadow-lg">
+                </div>
+                <div class="col-lg-5 offset-lg-1">
+                    <div class="d-flex gap-3 mb-4 fade-in">
+                        <div class="card-icon primary flex-shrink-0"><i data-lucide="target"></i></div>
+                        <div>
+                            <h5 class="fw-bold">Personalized Guidance</h5>
+                            <p class="text-muted">No generic advice. Every recommendation is tailored to your unique profile.</p>
+                        </div>
+                    </div>
+                    <div class="d-flex gap-3 mb-4 fade-in">
+                        <div class="card-icon accent flex-shrink-0"><i data-lucide="database"></i></div>
+                        <div>
+                            <h5 class="fw-bold">Data-Based Decisions</h5>
+                            <p class="text-muted">Rely on historical admission data and trends instead of guesswork.</p>
+                        </div>
+                    </div>
+                    <div class="d-flex gap-3 fade-in">
+                        <div class="card-icon violet flex-shrink-0"><i data-lucide="calendar"></i></div>
+                        <div>
+                            <h5 class="fw-bold">Easy Admission Planning</h5>
+                            <p class="text-muted">Organize your college hunt with built-in planners and deadline trackers.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-5 bg-gradient-secondary text-white text-center">
+        <div class="container py-4 fade-in">
+            <h2 class="display-5 fw-bold mb-3 text-white">Ready to Find Your Perfect College?</h2>
+            <p class="lead mb-4 text-white-50 max-w-2xl mx-auto">Let UniGuide AI simplify your admission journey and help you secure a brighter future.</p>
+            <a href="register.html" class="btn btn-light btn-lg px-5 py-3 fw-bold text-primary rounded-pill shadow">Start Your Journey</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-custom">
+        <div class="container">
+            <div class="row g-4 mb-4">
+                <div class="col-lg-4 col-md-6">
+                    <a class="navbar-brand-custom text-white mb-3 d-inline-flex" href="index.html">
+                        <i data-lucide="graduation-cap" class="text-accent"></i>
+                        UniGuide <span class="text-accent">AI</span>
+                    </a>
+                    <p class="text-white-50 mb-4">Your Smart Guide to the Right College. Choose smarter. Apply confidently. Build your future.</p>
+                    <div class="d-flex gap-3 social-icons">
+                        <a href="#"><i data-lucide="facebook"></i></a>
+                        <a href="#"><i data-lucide="twitter"></i></a>
+                        <a href="#"><i data-lucide="instagram"></i></a>
+                        <a href="#"><i data-lucide="linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 offset-lg-2">
+                    <h5 class="fw-bold mb-3">Quick Links</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-2">
+                        <li><a href="index.html" class="text-decoration-none">Home</a></li>
+                        <li><a href="colleges.html" class="text-decoration-none">Colleges</a></li>
+                        <li><a href="#" class="text-decoration-none">Courses</a></li>
+                        <li><a href="#" class="text-decoration-none">Scholarships</a></li>
+                        <li><a href="#" class="text-decoration-none">About</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="fw-bold mb-3">Support</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-2">
+                        <li><a href="#" class="text-decoration-none">Help Center</a></li>
+                        <li><a href="#" class="text-decoration-none">Contact</a></li>
+                        <li><a href="#" class="text-decoration-none">FAQ</a></li>
+                        <li><a href="#" class="text-decoration-none">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="border-white opacity-25 mb-4">
+            <div class="text-center text-white-50">
+                <small>&copy; 2026 UniGuide AI. All Rights Reserved.</small>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+    </script>
+    <script src="js/main.js"></script>
+</body>
+</html>

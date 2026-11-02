@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Colleges - UniGuide AI</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body class="bg-background">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top navbar-custom">
+        <div class="container">
+            <a class="navbar-brand navbar-brand-custom" href="index.html">
+                <i data-lucide="graduation-cap"></i> UniGuide <span>AI</span>
+            </a>
+            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i data-lucide="menu"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto ms-lg-4">
+                    <li class="nav-item"><a class="nav-link nav-link-custom" href="index.html"><i data-lucide="home"></i> Home</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-custom active" href="colleges.html"><i data-lucide="building-2"></i> Colleges</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-custom" href="prediction.html"><i data-lucide="target"></i> Predictor</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-custom" href="recommendations.html"><i data-lucide="sparkles"></i> AI Recs</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-custom" href="compare.html"><i data-lucide="git-compare"></i> Compare</a></li>
+                </ul>
+                <div class="d-flex align-items-center gap-2 mt-3 mt-lg-0">
+                    <button class="dark-mode-toggle me-2" title="Toggle Dark Mode">
+                        <i data-lucide="moon"></i>
+                    </button>
+                    <div id="navAuthSection" class="d-flex align-items-center gap-2">
+                        <a href="login.html" class="btn btn-outline-primary btn-sm rounded-pill px-3">Login</a>
+                        <a href="register.html" class="btn btn-primary btn-sm rounded-pill px-3">Get Started</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <section class="bg-primary text-white py-5">
+        <div class="container py-4 text-center">
+            <h1 class="display-5 fw-bold mb-3 text-white">Explore Colleges</h1>
+            <p class="lead text-white-50 mb-0 max-w-2xl mx-auto">Discover and compare top institutions matched to your academic profile and career aspirations.</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="py-5">
+        <div class="container">
+            
+            <div class="row g-4 mb-5">
+                <!-- Search & Filters -->
+                <div class="col-lg-12">
+                    <div class="card-custom p-3 bg-white d-flex flex-column flex-md-row gap-3 align-items-center">
+                        
+                        <div class="flex-grow-1 position-relative w-100">
+                            <i data-lucide="search" class="position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
+                            <input type="text" id="searchColleges" class="form-control-custom ps-5" placeholder="Search by college name, course, or location...">
+                        </div>
+                        
+                        <div class="w-100 w-md-auto d-flex gap-2">
+                            <select id="filterType" class="form-control-custom" style="min-width: 150px;">
+                                 <option value="">All Types</option>
+                                 <option value="Private">Private</option>
+                                 <option value="Public">Public / Government</option>
+                            </select>
+                            
+                            <select id="sortColleges" class="form-control-custom" style="min-width: 180px;">
+                                <option value="recommended">Sort by: Recommended</option>
+                                <option value="fees-low">Fees: Low to High</option>
+                                <option value="fees-high">Fees: High to Low</option>
+                                <option value="placement">Highest Placement</option>
+                            </select>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Meta -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h5 class="fw-bold mb-0 text-dark" id="resultsCount">Loading results...</h5>
+                <button class="btn btn-outline-secondary btn-sm d-lg-none"><i data-lucide="filter" style="width: 14px;"></i> Filters</button>
+            </div>
+
+            <div class="row">
+                <!-- Sidebar Filters (Desktop) -->
+                <div class="col-lg-3 d-none d-lg-block mb-4">
+                    <div class="card-custom p-4 bg-white sticky-top" style="top: 100px;">
+                        <h6 class="fw-bold mb-4 border-bottom pb-2">Advanced Filters</h6>
+                        
+                        <div class="mb-4">
+                            <label class="fw-bold text-dark small mb-2 d-block">Location</label>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input custom-checkbox" type="checkbox" id="loc-punjab">
+                                <label class="form-check-label text-muted small" for="loc-punjab">Punjab</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input custom-checkbox" type="checkbox" id="loc-delhi">
+                                <label class="form-check-label text-muted small" for="loc-delhi">Delhi NCR</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input custom-checkbox" type="checkbox" id="loc-chandigarh">
+                                <label class="form-check-label text-muted small" for="loc-chandigarh">Chandigarh</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input custom-checkbox" type="checkbox" id="loc-bangalore">
+                                <label class="form-check-label text-muted small" for="loc-bangalore">Bangalore / Karnataka</label>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="fw-bold text-dark small mb-2 d-block">Course Stream</label>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input custom-checkbox" type="checkbox" id="stream-eng">
+                                <label class="form-check-label text-muted small" for="stream-eng">Engineering</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input custom-checkbox" type="checkbox" id="stream-mgmt">
+                                <label class="form-check-label text-muted small" for="stream-mgmt">Management</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input custom-checkbox" type="checkbox" id="stream-comp">
+                                <label class="form-check-label text-muted small" for="stream-comp">Computer Applications</label>
+                            </div>
+                        </div>
+                        
+                        <button class="btn-primary-custom w-100 py-2">Apply Filters</button>
+                        <button class="btn btn-link text-muted text-decoration-none w-100 mt-2 small" onclick="resetFilters()">Clear All</button>
+                    </div>
+                </div>
+
+                <!-- College Cards Grid -->
+                <div class="col-lg-9">
+                    <div class="row" id="collegesContainer">
+                        <!-- Populated via colleges.js -->
+                        <div class="col-12 text-center py-5">
+                            <i data-lucide="loader-2" class="animate-spin mb-3 text-primary" style="width: 40px; height: 40px;"></i>
+                            <p class="text-muted">Fetching colleges...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+    <script src="js/main.js"></script>
+    <script src="js/mock-data.js"></script>
+    <script src="js/colleges.js"></script>
+</body>
+</html>

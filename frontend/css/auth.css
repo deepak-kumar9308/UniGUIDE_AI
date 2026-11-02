@@ -1,0 +1,194 @@
+/* 
+=========================================================
+UniGuide AI - Authentication Styles
+=========================================================
+*/
+
+.auth-container {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    background-color: var(--background);
+}
+
+.auth-illustration {
+    flex: 1;
+    min-width: 320px;
+    background: linear-gradient(135deg, #172554, #2563eb);
+    position: relative;
+    overflow: hidden;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff !important;
+    padding: 3rem;
+}
+
+.auth-illustration * {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.auth-illustration::before {
+    content: '';
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+    top: -100px;
+    right: -100px;
+    border-radius: 50%;
+}
+
+.auth-illustration::after {
+    content: '';
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(6,182,212,0.2) 0%, rgba(255,255,255,0) 70%);
+    bottom: -50px;
+    left: -100px;
+    border-radius: 50%;
+}
+
+.auth-content {
+    position: relative;
+    z-index: 2;
+    max-width: 500px;
+    text-align: center;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.auth-form-wrapper {
+    flex: 1;
+    min-width: 320px;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    background-color: #ffffff !important;
+}
+
+.auth-form-container {
+    width: 100%;
+    max-width: 450px;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.auth-brand {
+    font-family: var(--font-primary);
+    font-weight: 800;
+    font-size: 1.75rem;
+    color: #172554 !important;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    margin-bottom: 1rem;
+}
+
+.auth-brand span {
+    color: #2563eb !important;
+}
+
+.auth-header h3 {
+    color: #172554 !important;
+}
+
+.auth-header p {
+    color: #64748b !important;
+}
+
+.form-label-custom {
+    font-family: var(--font-primary);
+    font-weight: 600;
+    color: #172554 !important;
+    margin-bottom: 0.5rem;
+    display: inline-block;
+}
+
+.form-control-custom {
+    background-color: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: var(--radius-md);
+    padding: 0.75rem 1rem;
+    font-family: var(--font-secondary);
+    color: #0f172a !important;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    width: 100%;
+}
+
+.form-control-custom:focus {
+    outline: none;
+    border-color: #2563eb !important;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.password-toggle {
+    position: absolute;
+    right: 15px;
+    top: 40px;
+    cursor: pointer;
+    color: #64748b !important;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.password-toggle:hover {
+    color: #172554 !important;
+}
+
+/* Password Strength Indicator */
+.password-strength {
+    height: 4px;
+    background-color: var(--border);
+    border-radius: 2px;
+    margin-top: 8px;
+    overflow: hidden;
+}
+
+.password-strength-bar {
+    height: 100%;
+    width: 0;
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.strength-weak { width: 33.33%; background-color: var(--danger); }
+.strength-medium { width: 66.66%; background-color: var(--warning); }
+.strength-strong { width: 100%; background-color: var(--success); }
+
+/* Custom Checkbox */
+.custom-checkbox {
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    cursor: pointer;
+    accent-color: var(--secondary);
+}
+
+/* Error States */
+.form-error {
+    font-size: 0.85rem;
+    color: var(--danger);
+    margin-top: 0.25rem;
+    display: none;
+}
+
+.form-control-custom.is-invalid {
+    border-color: var(--danger) !important;
+}
+
+.form-control-custom.is-invalid + .form-error {
+    display: block;
+}
